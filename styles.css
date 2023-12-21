@@ -1,0 +1,123 @@
+body{
+    text-align: center;
+    align-items: center;
+
+}
+.home{
+    background-image: url(img/car.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+  
+}
+.h1home{
+    text-align: center;
+    padding-top: 200px;
+}
+section{
+    height: 100vh;
+
+}
+.about{
+    background-image: url(img/sand.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.apps{
+    background-image: url(img/bg.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.app-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    opacity: .4;
+    border-radius: 20px; 
+}
+/* about us */
+/* Add this CSS to your existing stylesheet or create a new one */
+
+/* Add this CSS to your existing stylesheet or create a new one */
+
+.about {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 50px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around; /* Change to 'space-between' if you want space at the ends */
+    flex-wrap: wrap;
+}
+
+
+.person-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    text-align: left;
+    transition: transform 0.3s;
+    flex: 1; /* Distribute available space equally among all containers */
+    margin: 0 10px; /* Adjust margin as needed */
+}
+
+.person-container:hover {
+    transform: scale(1.05);
+}
+
+.person-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.person-details {
+    color: #333;
+}
+
+.person-name {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.person-role {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.person-description {
+    font-size: 14px;
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center; /* Center items horizontally on smaller screens */
+    }
+
+    .person-container {
+        margin-right: 0;
+    }
+}
+@media (max-width: 768px){
+    section{
+        height: auto;
+    }
+    .person-container{
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/aecf27df59.js" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: linear-gradient(#87ffd1, #fff27f);
+    }
+
+    #title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #board {    
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 5px;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  <div id="title">Tic Tac Toe</div>
+  <br>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  <a href="index.html"><i class="fa-solid fa-house"></i></a>
+  <div id="board"></div>
+  <button onclick="resetGame()">Reset Game</button>
+
+  <script>
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let currentPlayer = 'X';
+    let gameActive = true;
+    const boardElement = document.getElementById('board');
+
+    function createBoard() {
+      for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.index = i;
+        cell.addEventListener('click', () => cellClick(i));
+        boardElement.appendChild(cell);
+      }
+    }
+
+    function cellClick(index) {
+      if (!gameActive || board[index] !== '') return;
+
+      board[index] = currentPlayer;
+      updateBoard();
+      if (checkWinner()) {
+        setTimeout(resetGame, 1000);
+      } else {
+        switchPlayer();
+      }
+    }
+
+    function updateBoard() {
+      const cells = document.querySelectorAll('.cell');
+
+      cells.forEach((cell, index) => {
+        cell.textContent = board[index];
+      });
+    }
+
+    function switchPlayer() {
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    }
+
+    function checkWinner() {
+      const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+      ];
+
+      for (const combo of winningCombinations) {
+        const [a, b, c] = combo;
+
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          gameActive = false;
+          alert(`${currentPlayer} wins!`);
+          return true;
+        }
+      }
+
+      if (!board.includes('') && gameActive) {
+        alert("It's a tie!");
+        gameActive = false;
+        return true;
+      }
+
+      return false;
+    }
+
+    function resetGame() {
+      board = ['', '', '', '', '', '', '', '', ''];
+      currentPlayer = 'X';
+      gameActive = true;
+      const cells = document.querySelectorAll('.cell');
+
+      cells.forEach(cell => {
+        cell.textContent = '';
+      });
+    }
+
+    createBoard();
+  </script>
+  <script src="https://kit.fontawesome.com/aecf27df59.js" crossorigin="anonymous"></script>
+</body>
+</html>

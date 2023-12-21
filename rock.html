@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(img/rock.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.choices {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Existing styles */
+
+.choice-icon {
+    font-size: 40px;
+    margin: 10px;
+}
+
+#playerChoiceIcon:before,
+#computerChoiceIcon:before {
+    content: '';
+}
+
+#playerChoiceIcon:before {
+    font-family: 'Font Awesome 5 Free';
+}
+
+#computerChoiceIcon:before {
+    font-family: 'Font Awesome 5 Free';
+}
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.choice-icon {
+    font-size: 40px;
+}
+
+#playerChoiceIcon:before,
+#computerChoiceIcon:before {
+    content: '';
+}
+
+#playerChoiceIcon:before {
+    font-family: 'Font Awesome 5 Free';
+}
+
+#computerChoiceIcon:before {
+    font-family: 'Font Awesome 5 Free';
+}
+/* Existing styles */
+.result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.choice-icon {
+    font-size: 40px;
+}
+
+#playerChoiceIcon:before,
+#computerChoiceIcon:before {
+    content: '';
+}
+
+#playerChoiceIcon:before {
+    font-family: 'Font Awesome 5 Free';
+}
+
+#computerChoiceIcon:before {
+    font-family: 'Font Awesome 5 Free';
+}
+
+    </style>
+    <div class="container">
+        <h1>Rock, Paper, Scissors Game</h1>
+        <div class="result" id="result">Choose your move!</div>
+        <div class="icons-container">
+            <div id="playerChoiceIcon" class="choice-icon"></div>
+            <div id="computerChoiceIcon" class="choice-icon"></div>
+        </div>
+        <div class="choices">
+            <button onclick="makeChoice('rock')"><i class="fas fa-hand-rock"></i> Rock</button>
+            <button onclick="makeChoice('paper')"><i class="fas fa-hand-paper"></i> Paper</button>
+            <button onclick="makeChoice('scissors')"><i class="fas fa-hand-scissors"></i> Scissors</button>
+        </div>
+    </div>
+<script>
+    const choices = ['rock', 'paper', 'scissors'];
+
+function makeChoice(playerChoice) {
+    const computerChoice = getComputerChoice();
+    const result = determineWinner(playerChoice, computerChoice);
+    
+    displayResult(playerChoice, computerChoice, result);
+}
+
+function getComputerChoice() {
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+
+function determineWinner(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        return 'It\'s a tie!';
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        return 'You win!';
+    } else {
+        return 'You lose!';
+    }
+}
+
+function displayResult(playerChoice, computerChoice, result) {
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${result}`;
+}
+/* Existing JavaScript */
+
+function displayResult(playerChoice, computerChoice, result) {
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${result}`;
+    
+    displayChoiceIcon('playerChoiceIcon', playerChoice);
+    displayChoiceIcon('computerChoiceIcon', computerChoice);
+}
+
+function displayChoiceIcon(elementId, choice) {
+    const iconElement = document.getElementById(elementId);
+
+    switch (choice) {
+        case 'rock':
+            iconElement.innerHTML = '<i class="fas fa-hand-rock"></i>';
+            break;
+        case 'paper':
+            iconElement.innerHTML = '<i class="fas fa-hand-paper"></i>';
+            break;
+        case 'scissors':
+            iconElement.innerHTML = '<i class="fas fa-hand-scissors"></i>';
+            break;
+        default:
+            iconElement.innerHTML = '';
+    }
+}
+/* Existing JavaScript */
+
+function displayResult(playerChoice, computerChoice, result) {
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${result}`;
+    
+    displayChoiceIcon('playerChoiceIcon', playerChoice);
+    displayChoiceIcon('computerChoiceIcon', computerChoice);
+}
+
+function displayChoiceIcon(elementId, choice) {
+    const iconElement = document.getElementById(elementId);
+
+    // Create a new div for the icon
+    const iconDiv = document.createElement('div');
+    iconDiv.classList.add('choice-icon');
+
+    // Set the content based on the chosen option
+    switch (choice) {
+        case 'rock':
+            iconDiv.innerHTML = '<i class="fas fa-hand-rock"></i>';
+            break;
+        case 'paper':
+            iconDiv.innerHTML = '<i class="fas fa-hand-paper"></i>';
+            break;
+        case 'scissors':
+            iconDiv.innerHTML = '<i class="fas fa-hand-scissors"></i>';
+            break;
+        default:
+            return; // Do nothing if the choice is invalid
+    }
+
+    // Clear the existing content and append the new icon div
+    iconElement.innerHTML = '';
+    iconElement.appendChild(iconDiv);
+}
+
+
+</script>
+    <script src="script.js"></script>
+</body>
+</html>

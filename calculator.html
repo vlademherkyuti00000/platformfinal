@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/aecf27df59.js" crossorigin="anonymous">
+</head>
+<body>
+    
+    <!-- CALCULATOR CSS -->
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+
+
+body{
+    min-height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #0a0a0a, #3a4452);
+}
+
+.calculator{
+    padding: 15px;
+    box-shadow: 0 0 15px #000;
+    border: 2px solid rgb(116,114,114);
+    border-radius: 15px;
+}
+
+.display input{
+    width: 360px;
+    border: none;
+    outline: none;
+    padding: 20px;
+    margin: 10px;
+    background: transparent;
+    color: #fff;
+    font-size: 40px;
+    text-align: right;
+    cursor: pointer;
+}
+
+input::placeholder{
+    color: #fff;
+}
+
+button{
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    background: transparent;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: -5px -6px 15px black;
+    outline: 1px solid #313131;
+    outline-offset: 3px;
+    cursor: pointer;
+}
+
+button:active{
+    background: black;
+    transform: translate(2px, 2px);
+}
+
+.opr{
+    color: yellow;
+    background: #1e1919;
+    font-weight: 700;
+}
+
+#eqBtn{
+    background: orangered;
+    font-weight: 900;
+}
+    </style>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="inputBox" value="0" placeholder="0" disabled>
+        </div>
+        <div class="row">
+            <button type="button" class="opr">AC</button>
+            <button type="button" class="opr">DEL</button>
+            <button type="button" class="opr">%</button>
+            <button type="button" class="opr">/</button>
+        </div>
+        <div class="row">
+            <button type="button">7</button>
+            <button type="button">8</button>
+            <button type="button">9</button>
+            <button type="button" class="opr">x</button>
+        </div>
+        <div class="row">
+            
+            
+            
+            
+            
+            
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button">6</button>
+            <button type="button" class="opr">+</button>
+        </div>
+        <div class="row">
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button" class="opr">-</button>
+        </div>
+        <div class="row">
+            <button type="button">x²</button>
+            <button type="button">0</button>
+            <button type="button">.</button>
+            <button type="button" id="eqBtn">=</button>
+        </div>
+
+    </div>
+    <!-- CALCULATOR JS-->
+    <script>
+        let inputBox = document.getElementById('inputBox');
+let buttons = document.querySelectorAll('button');
+
+let string = '';
+
+buttons.forEach(element => {
+    element.addEventListener('click', (b) => {
+        if (b.target.innerText == '=') {
+            // Replace 'x' with '*' for evaluation
+            string = String(eval(string.replace(/x/, '*')));
+            inputBox.value = string;
+        }
+        // To clear all input
+        else if (b.target.innerText == 'AC') {
+            string = '';
+            inputBox.value = string;
+        }
+        // To delete one character at a time
+        else if (b.target.innerText == 'DEL') {
+            string = string.substring(0, string.length - 1);
+            inputBox.value = string;
+        }
+        else if (b.target.innerText == 'x²') {
+            // Calculate the square of the current input
+            string = String(eval(string + '*' + string));
+            inputBox.value = string;
+        }
+        else {
+            string +=  b.target.innerText;
+            inputBox.value = string;
+        }
+    })
+})
+    </script>
+    <script src="calculator.js"></script>
+    <script src="https://kit.fontawesome.com/aecf27df59.js" crossorigin="anonymous"></script>
+</body>
+</html>
